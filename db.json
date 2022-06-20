@@ -73,6 +73,43 @@
       "tags": [
         "toiminta"
       ]
+    },
+    {
+      "id": 4,
+      "hanzi": "星",
+      "pinyin": [
+        "XING1"
+      ],
+      "toneless": [
+        "XING"
+      ],
+      "definition": {
+        "finnish": "tähti",
+        "english": "star",
+        "explanation": "valoa tuottava taivaankappale"
+      },
+      "tags": [
+        "luonto",
+        "astrologia"
+      ]
+    },
+    {
+      "id": 5,
+      "hanzi": "星期",
+      "pinyin": [
+        "XING1 QI1"
+      ],
+      "toneless": [
+        "XING QI"
+      ],
+      "definition": {
+        "finnish": "viikko",
+        "english": "week",
+        "explanation": "viikko ajan yksikkönä ja viikonpäivät"
+      },
+      "tags": [
+        "aika"
+      ]
     }
   ],
   "sounds": [

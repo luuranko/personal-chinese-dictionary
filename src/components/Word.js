@@ -1,7 +1,5 @@
 import React from "react"
 
-// TODO pinyin muotoillaan kauniimpaan muotoon ilman numeroita
-
 const Word = ({word}) => {
   return (
     <tr>

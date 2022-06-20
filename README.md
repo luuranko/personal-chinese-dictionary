@@ -1,13 +1,20 @@
+## Current functionality
+
+- User can search words in the database by character
+
 ## TODO
 
 - User can search words by pinyin
   - User can search words by pinyin + tone
   - User can search long words by writing smaller parts of them
-- Show pinyin in a style like pīnyīn instead of PIN1YIN1
+  - User can search longer words by writing them with spaces or apostrophes separating characters ("xing qi tian" or "xing'qi'tian")
 - User can add words
   - hanzi, pinyin(s), finnish translation, english translation, explanation, tag(s)
 - User can modify words in the database
 - Import words from text file
+- Visual improvements
+  - Show pinyin in a style like pīnyīn instead of PIN1YIN1
+  - Pinyin is shown below the character
 
 ## Credits
 

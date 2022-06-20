@@ -145,33 +145,76 @@ const App = (props) => {
     setNewSearchType(event.target.value)
   }
 
-  const filterWordsByPitch = () => {
-    const matching = []
-    words.forEach(w => {
+  // Returns the word as an array containing separate characters
+  const cleanWord = (word) => {
+    return word.toUpperCase().trim().split("'").join(' ')
+  }
+
+  // Checks if written pinyin is valid
+  const validatePinyin = (pinyin) => {
+    const search = pinyin.split(" ")
+    search.forEach(p => {
+      if (!pitches.includes(p)) {
+        return false
+      } else if (!sounds.includes(p)) {
+        return false
+      }
+    })
+    return true
+  }
+
+  const isNumberedPinyin = (pinyin) => {
+    if (!pitches.includes(pinyin)) {
+      return true
+    }
+    return false
+  }
+
+  // convert search to string and search per each word's pinyin
+  // if contains such substring
+  // currently does not work with longer words
+  const filterWordsByPinyin = (search) => {
       // MAGIC HERE
       // remember: a word can have many different pinyin,
       // and one pinyin may have many parts which all must be checked
-      if (true) {
+    const matching = []
+    words.forEach(w => {
+      let toAdd = false
+      if (isNumberedPinyin(search.split(" ")[0])) {
+        w.pinyin.forEach(p => {
+          if (p.includes(search)) {
+            toAdd = true
+          }
+        })
+      } else {
+        w.toneless.forEach(p => {
+          if (p.includes(search)) {
+            toAdd = true
+          }
+        })
+      }
+      if (toAdd) {
         matching.push(w)
       }
     });
+    console.log(matching.length)
     return matching
   }
 
   const results = () => {
-    if (newSearch.length === 0) {
+    const search = cleanWord(newSearch)
+    if (search.length === 0) {
+      console.log("No search")
       return words
     }
     if (searchType === 'pinyin') {
-      if (pitches.includes(newSearch.toUpperCase())) {
-        return filterWordsByPitch()
-      } else if (sounds.includes(newSearch.toUpperCase())) {
-        return words.filter(w => w.toneless.includes(newSearch))
+      if (!validatePinyin(search)) {
+        console.log('Incorrect search terms! Check your spelling.')
+        return []
       } else {
-        return words
+        console.log("Filtering by pinyin")
+        return filterWordsByPinyin(search)
       }
-
-      
     } else if (searchType === 'hanzi') {
       return words.filter(w => w.hanzi.includes(newSearch))
     }
