@@ -179,22 +179,41 @@ const App = (props) => {
     words.forEach(w => {
       let matchingParts = search.length
       for (let i = 0; i < w.pinyin.length; i++) {
-        const partsPitch = w.pinyin[i].split(" ")
-        const partsSound = w.toneless[i].split(" ")
-        search.forEach(s => {
-          if (partsPitch.includes(s)) {
+        if (search.length > 1) {
+          let startingIndex = indexInWord(w, i, search[0])
+          if (startingIndex !== -1) {
             matchingParts--
-          } else if (partsSound.includes(s)) {
+            for (let j = 1; j < search.length; j++) {
+              if (indexInWord(w, i, search[j]) === startingIndex + 1) {
+                matchingParts--
+                startingIndex++
+              }
+            }
+          }
+        } else {
+          if (indexInWord(w, i, search[0]) !== -1) {
             matchingParts--
           }
-        })
+        }
       }
-      if (matchingParts === 0) {
+      if (matchingParts < 1) {
         matching.push(w)
       }
     });
     return matching
   }
+
+  const indexInWord = (word, index, searchTerm) => {
+    const partsPitch = word.pinyin[index].split(" ")
+    const partsSound = word.toneless[index].split(" ")
+    const i = partsPitch.indexOf(searchTerm)
+    if (i !== -1) {
+      return i
+    } else {
+      return partsSound.indexOf(searchTerm)
+    }
+  }
+
   // const handleNewHanziChange = (event) => {
   //   setNewHanzi(event.target.value)
   // }

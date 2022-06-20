@@ -1,3 +1,25 @@
+# Personal Chinese Dictionary
+
+## Description and goals
+
+This app aims to provide a method of keeping track of the user's learned Mandarin Chinese characters and words. The app will allow the user to
+- add new words
+- modify previously added words
+- categorize words with tags
+- look up words by
+  - hanzi
+  - pinyin
+  - translation (Finnish or English) and explanation
+  - tags
+
+## Motivation
+
+The motivation for this project was born when I kept looking up Chinese words I thought I hadn't already learnt. This app should make it more convenient for me to rehearse old words when connecting them to a certain category (I certainly will create a tag for terms related to imperial court politics).
+
+## Changes in the latest commit
+
+- Fixed issue with pinyin search, where search terms applied to words in random order ("qi xing" returned "xing qi")
+
 ## Current functionality
 
 - App displays a list of words saved in the json-file
@@ -7,7 +29,7 @@
   - User can filter words by pinyin both with tone and without
     - "wo" or "wo3" both return words matching "wo3"
   - User can search for long words containing the input pinyin
-    - "xing" and "qi" both return words matching "xing qi", but "xin" or "q" will not
+    - "xing" and "qi" both return words matching "xing qi", but "xi", "xin" or "q" will not
   - User can search for longer words by writing them with spaces or apostrophes separating characters
     - "xing qi tian", "xing'qi'tian", or "xing1'qi tian1" all return words matching "xing1 qi1 tian1"
 
@@ -16,14 +38,19 @@
 - User can add words
   - hanzi, pinyin(s), finnish translation, english translation, explanation, tag(s)
 - User can modify words in the database
-- More functionality to searching by pinyin
+- More functionality to searching
   - Support for searching with style pīnyīn instead of PIN1YIN1
-- Import words from text file
+  - User can search with limited regular expressions
+  - User can search by tag
+  - User can search by translation and explanation
+- Import words from a text file
 - Visual improvements
   - Show pinyin in a style like pīnyīn instead of PIN1YIN1
   - Pinyin is shown below the character
 - Mass modification options
   - User can change the name of a tag without modifying each word containing it individually
+- Learning challenges
+  - Option to hide translations, explanations and/or pinyin
 
 ## Credits
 
