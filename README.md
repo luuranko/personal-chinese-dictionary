@@ -1,20 +1,29 @@
 ## Current functionality
 
-- User can search words in the database by character
+- App displays a list of words saved in the json-file
+- User can filter words in the database by character
+  - 行 returns 行， 行客， 银行, etc.
+- User can filter words by pinyin
+  - User can filter words by pinyin both with tone and without
+    - "wo" or "wo3" both return words matching "wo3"
+  - User can search for long words containing the input pinyin
+    - "xing" and "qi" both return words matching "xing qi", but "xin" or "q" will not
+  - User can search for longer words by writing them with spaces or apostrophes separating characters
+    - "xing qi tian", "xing'qi'tian", or "xing1'qi tian1" all return words matching "xing1 qi1 tian1"
 
-## TODO
+## Future features
 
-- User can search words by pinyin
-  - User can search words by pinyin + tone
-  - User can search long words by writing smaller parts of them
-  - User can search longer words by writing them with spaces or apostrophes separating characters ("xing qi tian" or "xing'qi'tian")
 - User can add words
   - hanzi, pinyin(s), finnish translation, english translation, explanation, tag(s)
 - User can modify words in the database
+- More functionality to searching by pinyin
+  - Support for searching with style pīnyīn instead of PIN1YIN1
 - Import words from text file
 - Visual improvements
   - Show pinyin in a style like pīnyīn instead of PIN1YIN1
   - Pinyin is shown below the character
+- Mass modification options
+  - User can change the name of a tag without modifying each word containing it individually
 
 ## Credits
 
