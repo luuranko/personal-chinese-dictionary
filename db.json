@@ -6,9 +6,6 @@
       "pinyin": [
         "WO3"
       ],
-      "toneless": [
-        "WO"
-      ],
       "definition": {
         "finnish": "minä",
         "english": "I, me",
@@ -24,9 +21,6 @@
       "pinyin": [
         "NI3"
       ],
-      "toneless": [
-        "NI"
-      ],
       "definition": {
         "finnish": "sinä",
         "english": "you",
@@ -41,9 +35,6 @@
       "hanzi": "公园",
       "pinyin": [
         "GONG1 YUAN2"
-      ],
-      "toneless": [
-        "GONG YUAN"
       ],
       "definition": {
         "finnish": "puisto",
@@ -61,10 +52,6 @@
         "XING2",
         "HANG2"
       ],
-      "toneless": [
-        "XING",
-        "HANG"
-      ],
       "definition": {
         "finnish": "mennä, matkustaa, kävellä, tehdä, ammatti, käytös, kykenevä",
         "english": "go, travel, walk, do, profession, behavior, competent",
@@ -79,9 +66,6 @@
       "hanzi": "星",
       "pinyin": [
         "XING1"
-      ],
-      "toneless": [
-        "XING"
       ],
       "definition": {
         "finnish": "tähti",
@@ -98,9 +82,6 @@
       "hanzi": "星期",
       "pinyin": [
         "XING1 QI1"
-      ],
-      "toneless": [
-        "XING QI"
       ],
       "definition": {
         "finnish": "viikko",

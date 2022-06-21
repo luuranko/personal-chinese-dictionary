@@ -16,22 +16,25 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 
 The motivation for this project was born when I kept looking up Chinese words I thought I hadn't already learnt. This app should make it more convenient for me to rehearse old words when connecting them to a certain category (I certainly will create a tag for terms related to imperial court politics).
 
-## Changes in the latest commit
+## Latest changes
 
-- Fixed issue with pinyin search, where search terms applied to words in random order ("qi xing" returned "xing qi")
+- Slight premature optimization: search by pinyin saves time by not processing words that are too short to consider as results for given search
+- Improved modularity by moving some functionality to separate files
+- Improved pinyin search by allowing searches that do not have spaces or apostrophes separating syllables (but if using tone markers, at least all but the last syllable must have them)
+- Discarded toneless-category from word object, as it has now become obsolete
 
 ## Current functionality
 
 - App displays a list of words saved in the json-file
 - User can filter words in the database by character
-  - 行 returns 行， 行客， 银行, etc.
+  - 行 returns 行， 行客， 银行, and so on
 - User can filter words by pinyin
   - User can filter words by pinyin both with tone and without
     - "wo" or "wo3" both return words matching "wo3"
   - User can search for long words containing the input pinyin
     - "xing" and "qi" both return words matching "xing qi", but "xi", "xin" or "q" will not
-  - User can search for longer words by writing them with spaces or apostrophes separating characters
-    - "xing qi tian", "xing'qi'tian", or "xing1'qi tian1" all return words matching "xing1 qi1 tian1"
+  - User can search for longer words by writing them with spaces or apostrophes separating syllables, or without using spaces or apostrophes if at least each but the last syllable has a tone marker or none have
+    - "xing qi tian", "xing'qi'tian", "xing1'qi tian1", "xingqitian", "xing1qi1tian" and "xing1qi1tian1" all return words matching "xing1 qi1 tian1"
 
 ## Future features
 
@@ -39,6 +42,7 @@ The motivation for this project was born when I kept looking up Chinese words I 
   - hanzi, pinyin(s), finnish translation, english translation, explanation, tag(s)
 - User can modify words in the database
 - More functionality to searching
+  - Smarter filtering by pinyin: search "xingqi1" should return "xing1 qi1", etc.
   - Support for searching with style pīnyīn instead of PIN1YIN1
   - User can search with limited regular expressions
   - User can search by tag
