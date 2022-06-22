@@ -2,22 +2,33 @@ import { React, useEffect, useState } from "react";
 import axios from 'axios'
 import WordList from "./components/WordList";
 import SearchForm from "./components/SearchForm"
-import SearchResults from "./components/SearchResults";
-// import AddWordForm from "./components/AddWordForm";
+import {
+  SearchResults,
+  validatePinyinHasPitch,
+  cleanWord,
+  splitPinyinWithoutSpacesBySyllable
+} from "./components/SearchResults";
+import AddWordForm from "./components/AddWordForm";
 
-const App = (props) => {
+const App = () => {
   const [words, setWords] = useState([])
   const [sounds, setSounds] = useState([])
   const [pitches, setPitches] = useState([])
-  // const [newHanzi, setNewHanzi] = useState('')
-  // const [newPinyin, setNewPinyin] = useState('')
-  // const [newFinnish, setNewFinnish] = useState('')
-  // const [newEnglish, setNewEnglish] = useState('')
-  // const [newExplain, setNewExplain] = useState('')
-  // const [newTags, setNewTags] = useState('')
+
+  const [newHanzi, setNewHanzi] = useState('')
+  const [newPinyin, setNewPinyin] = useState('')
+  const [newFinnish, setNewFinnish] = useState('')
+  const [newEnglish, setNewEnglish] = useState('')
+  const [newExplain, setNewExplain] = useState('')
+  const [newTags, setNewTags] = useState('')
+
+  const [notif, setNotif] = useState('')
+  const [isWarning, setIsWarning] = useState(false)
 
   // personal db
   const db = 'http://localhost:3001/'
+
+  const wordSite = 'http://localhost:3001/words/'
 
   // hemiola site db
   // const site = 'http://ccdb.hemiola.com/characters/'
@@ -60,58 +71,126 @@ const App = (props) => {
   }
   useEffect(hookPitches, [])
 
-  // const addWord = (event) => {
-  //   event.preventDefault()
+  const wordObject = () => {
+    let canPost = true
+    const hanzi = newHanzi.trim()
+    if (hanzi === '') {
+      setNotif('Enter valid hanzi')
+      setIsWarning(true)
+      canPost = false
+      return
+    }
 
+    if (newPinyin === '') {
+      setNotif('Enter valid pinyin')
+      setIsWarning(true)
+      canPost = false
+      return
+    }
+    const pinyin = []
+    newPinyin.split(',').forEach(p => {
+      p = cleanWord(p)
+      if (validatePinyinHasPitch(pitches, p)) {
+        pinyin.push(p)
+      } else {
+        const parts = splitPinyinWithoutSpacesBySyllable(p)
+        let pinyinIsValid = true
+        parts.forEach(part => {
+          if (!validatePinyinHasPitch(pitches, part)) {
+            pinyinIsValid = false
+          }
+        })
+        if (pinyinIsValid) {
+          pinyin.push(splitPinyinWithoutSpacesBySyllable(p).join(" "))
+        } else {
+          setNotif('Enter valid pinyin')
+          setIsWarning(true)
+          canPost = false
+        }
+      }
+    })
 
-  //   const hanzi = newHanzi.trim()
-  //   if (hanzi === '') {
-  //     window.alert('Enter valid hanzi')
-  //     return
-  //   }
+    const finnish = newFinnish.trim()
+    const english = newEnglish.trim()
+    const explain = newExplain.trim()
+    const definition = {
+      finnish: finnish,
+      english: english,
+      explanation: explain
+    }
 
-  //   if (pinyin === '') {
-  //     window.alert('Enter valid pinyin')
-  //     return
-  //   }
-  //   const pinyin = []
-  //   newPinyin.split(',').forEach(p => {
-  //     p = p.trim()
-  //     if (p !== '') {
-  //       pinyin.push(p)
-  //     }
-  //   })
+    const tags = []
+    newTags.split(',').forEach(t => {
+      t = t.trim()
+      if (t !== '') {
+        tags.push(t)
+      }
+    })
 
-  //   const meanings = []
-  //   newMeanings.split(',').forEach(m => {
-  //     m = m.trim()
-  //     if (m !== '') {
-  //       meanings.push(m)
-  //     }
-  //   })
+    const wordObject = {
+      hanzi: hanzi,
+      pinyin: pinyin,
+      definition: definition,
+      tags: tags
+    }
 
-  //   const tags = []
-  //   newTags.split(',').forEach(t => {
-  //     t = t.trim()
-  //     if (t !== '') {
-  //       tags.push(t)
-  //     }
-  //   })
+    if (canPost) {
+      return wordObject
+    } else {
+      return null
+    }
+  }
 
-  //   const wordObject = {
-  //     id: words[words.length - 1].id + 1,
-  //     hanzi: hanzi,
-  //     pinyin: pinyin,
-  //     tags: tags
-  //   }
-  //   setWords(words.concat(wordObject))
-  //   setNewHanzi('')
-  //   setNewPinyin('')
-  //   setNewFinnish('')
-  //   setNewEnglish('')
-  //   setNewExplain('')
-  //   setNewTags('')
-  // }
+  const addWord = (event) => {
+    event.preventDefault()
+    const word = wordObject()
+    if (word !== null) {
+      axios
+      .post(wordSite, word)
+      .then(response => {
+        setWords(words.concat(response.data))
+        setNewHanzi('')
+        setNewPinyin('')
+        setNewFinnish('')
+        setNewEnglish('')
+        setNewExplain('')
+        setNewTags('')
+
+        setNotif(`Added ${response.data.hanzi}`)
+        setIsWarning(false)
+      })
+    }
+  }
+
+  const modifyWord = id => {
+    const word = words.find(w => w.id === id)
+
+    setNewHanzi(word.hanzi)
+    setNewPinyin(word.pinyin.join(", "))
+    setNewFinnish(word.definition.finnish)
+    setNewEnglish(word.definition.english)
+    setNewExplain(word.definition.explanation)
+    setNewTags(word.tags.join(", "))
+  }
+
+  const modifyWordSubmit = id => {
+
+    const wordObject = wordObject()
+
+    if (wordObject !== null) {
+      axios
+        .put(wordSite + `${id}`, wordObject)
+        .then(response => {
+          setWords(words.map(w => w.id !== id ? w : response.data))
+          setNewHanzi('')
+          setNewPinyin('')
+          setNewFinnish('')
+          setNewEnglish('')
+          setNewExplain('')
+          setNewTags('')
+        })
+    }
+  }
 
   const handleNewSearchChange = (event) => {
     setNewSearch(event.target.value)
@@ -122,40 +201,93 @@ const App = (props) => {
     setNewSearchType(event.target.value)
   }
 
-  // const handleNewHanziChange = (event) => {
-  //   setNewHanzi(event.target.value)
-  // }
+  const handleNewHanziChange = (event) => {
+    setNewHanzi(event.target.value)
+  }
 
-  // const handleNewPinyinChange = (event) => {
-  //   setNewPinyin(event.target.value)
-  // }
+  const handleNewPinyinChange = (event) => {
+    setNewPinyin(event.target.value)
+  }
 
-  // const handleNewTagsChange = (event) => {
-  //   setNewTags(event.target.value)
-  // }
+  const handleNewFinnishChange = (event) => {
+    setNewFinnish(event.target.value)
+  }
 
+  const handleNewEnglishChange = (event) => {
+    setNewEnglish(event.target.value)
+  }
+
+  const handleNewExplainChange = (event) => {
+    setNewExplain(event.target.value)
+  }
+
+  const handleNewTagsChange = (event) => {
+    setNewTags(event.target.value)
+  }
 
   return (
     <div>
-      {/* <AddWordForm
-        addWord={addWord}
-        newHanzi={newHanzi}
-        handleNewHanziChange={handleNewHanziChange}
-        newPinyin={newPinyin}
-        handleNewPinyinChange={handleNewPinyinChange}
-        newMeanings={newMeanings}
-        handleNewMeaningsChange={handleNewMeaningsChange}
-        newTags={newTags}
-        handleNewTagsChange={handleNewTagsChange}
-      /> */}
-      <SearchForm
-        newSearch={newSearch}
-        handleNewSearchChange={handleNewSearchChange}
-        handleSearchTypeChange={handleSearchTypeChange}
-      />
+      <table>
+        <tbody>
+          <tr>
+          <td>
+          <AddWordForm
+            addWord={addWord}
+            newHanzi={newHanzi}
+            handleNewHanziChange={handleNewHanziChange}
+            newPinyin={newPinyin}
+            handleNewPinyinChange={handleNewPinyinChange}
+            newFinnish={newFinnish}
+            handleNewFinnishChange={handleNewFinnishChange}
+            newEnglish={newEnglish}
+            handleNewEnglishChange={handleNewEnglishChange}
+            newExplain={newExplain}
+            handleNewExplainChange={handleNewExplainChange}
+            newTags={newTags}
+            handleNewTagsChange={handleNewTagsChange}
+          />
+          </td>
+          <td>
+            <SearchForm
+              newSearch={newSearch}
+              handleNewSearchChange={handleNewSearchChange}
+              handleSearchTypeChange={handleSearchTypeChange}
+            />
+          </td>
+          </tr>
+          <tr>
+            <td>
+              <Notification
+                notif={notif}
+                isWarning={isWarning}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <WordList words={SearchResults(words, pitches, sounds, newSearch, searchType)} />
     </div>
   );
+}
+
+const Notification = (props) => {
+  const {notif, isWarning} = props
+  if (isWarning) {
+    return (
+      <div>
+        <p className='warning'>
+          {notif}
+        </p>
+      </div>
+    )
+  }
+  return (
+    <div>
+      <p className='notif'>
+        {notif}
+      </p>
+    </div>
+  )
 }
 
 export default App;

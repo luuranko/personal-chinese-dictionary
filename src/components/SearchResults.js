@@ -34,6 +34,17 @@ const validatePinyin = (pitches, sounds, pinyin) => {
   return valid
 }
 
+const validatePinyinHasPitch = (pitches, pinyin) => {
+  const search = pinyin.split(" ")
+  let valid = true
+  search.forEach(p => {
+    if (!pitches.includes(p)) {
+      valid = false
+    }
+  })
+  return valid
+}
+
 // Returns list of search results
 const filterWordsByPinyin = (words, searchTerm) => {
   const search = searchTerm.split(" ")
@@ -136,4 +147,4 @@ const joinPinyinToSpacelessWithoutTones = (pinyin) => {
   return pinyin.split(" ").map(p => removeToneFromSyllable(p)).join("")
 }
 
-export default SearchResults
+export {SearchResults, validatePinyin, validatePinyinHasPitch, cleanWord, splitPinyinWithoutSpacesBySyllable}

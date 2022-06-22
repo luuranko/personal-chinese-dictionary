@@ -9,7 +9,7 @@
       "definition": {
         "finnish": "minä",
         "english": "I, me",
-        "explanation": "1. persoonan pronomini"
+        "explanation": "yksikön 1. persoonan pronomini"
       },
       "tags": [
         "pronomini"
@@ -24,7 +24,7 @@
       "definition": {
         "finnish": "sinä",
         "english": "you",
-        "explanation": "2. persoonan pronomini vertaiselle"
+        "explanation": "yksikön 2. persoonan pronomini vertaiselle"
       },
       "tags": [
         "pronomini"
@@ -91,6 +91,84 @@
       "tags": [
         "aika"
       ]
+    },
+    {
+      "hanzi": "银行",
+      "pinyin": [
+        "YIN2 HANG2"
+      ],
+      "definition": {
+        "finnish": "pankki",
+        "english": "bank",
+        "explanation": ""
+      },
+      "tags": [
+        "instituutio",
+        "raha"
+      ],
+      "id": 6
+    },
+    {
+      "hanzi": "今天",
+      "pinyin": [
+        "JIN1 TIAN1"
+      ],
+      "definition": {
+        "finnish": "tänään",
+        "english": "today",
+        "explanation": ""
+      },
+      "tags": [
+        "aika"
+      ],
+      "id": 7
+    },
+    {
+      "hanzi": "明天",
+      "pinyin": [
+        "MING2 TIAN1"
+      ],
+      "definition": {
+        "finnish": "huomenna",
+        "english": "tomorrow",
+        "explanation": ""
+      },
+      "tags": [
+        "aika"
+      ],
+      "id": 8
+    },
+    {
+      "hanzi": "大学",
+      "pinyin": [
+        "DA4 XUE2"
+      ],
+      "definition": {
+        "finnish": "yliopisto",
+        "english": "university, college",
+        "explanation": "korkeakoulu"
+      },
+      "tags": [
+        "koulutus",
+        "instituutio"
+      ],
+      "id": 9
+    },
+    {
+      "hanzi": "学校",
+      "pinyin": [
+        "XUE2 XIAO4"
+      ],
+      "definition": {
+        "finnish": "koulu",
+        "english": "school",
+        "explanation": ""
+      },
+      "tags": [
+        "koulutus",
+        "instituutio"
+      ],
+      "id": 10
     }
   ],
   "sounds": [

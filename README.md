@@ -18,14 +18,22 @@ The motivation for this project was born when I kept looking up Chinese words I 
 
 ## Latest changes
 
-- Slight premature optimization: search by pinyin saves time by not processing words that are too short to consider as results for given search
-- Improved modularity by moving some functionality to separate files
-- Improved pinyin search by allowing searches that do not have spaces or apostrophes separating syllables (but if using tone markers, at least all but the last syllable must have them)
-- Discarded toneless-category from word object, as it has now become obsolete
+- Words can now be added to the database.
+- Correct form of pinyin is validated when adding a word
+- Added notification text to inform about problems when adding new words and confirm that a word was successfully added
+- On the side added some functions in preparation for implementing the modification of previously added words
 
 ## Current functionality
 
 - App displays a list of words saved in the json-file
+- User can add words to the database with following attributes:
+  - hanzi
+  - pinyin(s)
+  - finnish translation
+  - english translation
+  - explanation
+  - tag(s)
+- App notifies the user of some problems and actions
 - User can filter words in the database by character
   - 行 returns 行， 行客， 银行, and so on
 - User can filter words by pinyin
@@ -38,8 +46,7 @@ The motivation for this project was born when I kept looking up Chinese words I 
 
 ## Future features
 
-- User can add words
-  - hanzi, pinyin(s), finnish translation, english translation, explanation, tag(s)
+- Notification disappears after a time and/or can be dismissed by clicking
 - User can modify words in the database
 - More functionality to searching
   - Smarter filtering by pinyin: search "xingqi1" should return "xing1 qi1", etc.
@@ -53,8 +60,15 @@ The motivation for this project was born when I kept looking up Chinese words I 
   - Pinyin is shown below the character
 - Mass modification options
   - User can change the name of a tag without modifying each word containing it individually
+- Choosing tags will be easier: existing tags can be chosen from a multi-choice dropdown list 
 - Learning challenges
   - Option to hide translations, explanations and/or pinyin
+- Implementing radicals
+  - Words display radicals contained within characters of the word
+  - User can filter words by radical
+- Implementing traditional characters
+  - Words display their traditional variant, if available
+  - Filtering by hanzi supports traditional characters
 
 ## Credits
 
