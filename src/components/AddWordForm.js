@@ -2,17 +2,22 @@ import React from "react"
 
 const AddWordForm = (props) => {
   const {
-    addWord,
+    addWord, editWordSubmit, editingId,
     newHanzi, handleNewHanziChange,
     newPinyin, handleNewPinyinChange,
     newFinnish, handleNewFinnishChange,
     newEnglish, handleNewEnglishChange,
     newExplain, handleNewExplainChange,
-    newTags, handleNewTagsChange
+    newTags, handleNewTagsChange,
+    cancel
   } = props
+  let submitFunction = addWord
+  if (editingId > -1) {
+    submitFunction = editWordSubmit
+  }
   return (
     <div>
-      <form onSubmit={addWord}>
+      <form onSubmit={submitFunction}>
         <table>
           <tbody>
             <tr>
@@ -76,6 +81,7 @@ const AddWordForm = (props) => {
           </tbody>
         </table>
         <button type='submit'>save</button>
+        <button type="button" onClick={() => cancel()}>cancel</button>
       </form>
     </div>
   )

@@ -169,6 +169,84 @@
         "instituutio"
       ],
       "id": 10
+    },
+    {
+      "hanzi": "妈妈",
+      "pinyin": [
+        "MA1 MA"
+      ],
+      "definition": {
+        "finnish": "äiti",
+        "english": "mother, mom",
+        "explanation": "moderni, läheinen"
+      },
+      "tags": [
+        "henkilö",
+        "perhe"
+      ],
+      "id": 11
+    },
+    {
+      "hanzi": "姐姐",
+      "pinyin": [
+        "JIE3 JIE"
+      ],
+      "definition": {
+        "finnish": "isosisko, sisko",
+        "english": "big sister, elder sister, older sister, sister",
+        "explanation": ""
+      },
+      "tags": [
+        "henkilö",
+        "perhe"
+      ],
+      "id": 12
+    },
+    {
+      "hanzi": "看起来",
+      "pinyin": [
+        "KAN4 QI LAI"
+      ],
+      "definition": {
+        "finnish": "näyttää, vaikuttaa",
+        "english": "seem, appear",
+        "explanation": ""
+      },
+      "tags": [
+        "toiminta"
+      ],
+      "id": 13
+    },
+    {
+      "hanzi": "看上去",
+      "pinyin": [
+        "KAN4 SHANG QU"
+      ],
+      "definition": {
+        "finnish": "näyttää, vaikuttaa",
+        "english": "seem, appear",
+        "explanation": ""
+      },
+      "tags": [
+        "toiminta"
+      ],
+      "id": 14
+    },
+    {
+      "hanzi": "爸爸",
+      "pinyin": [
+        "BA4 BA"
+      ],
+      "definition": {
+        "finnish": "isä",
+        "english": "dad, father",
+        "explanation": ""
+      },
+      "tags": [
+        "henkilö",
+        "perhe"
+      ],
+      "id": 15
     }
   ],
   "sounds": [

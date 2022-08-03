@@ -1,0 +1,24 @@
+td {
+  text-align: center;
+  border-spacing: 30 px;
+  padding: 30 px;
+}
+p.warning {
+  color: red;
+}
+p.notif {
+  color: green;
+}
+.hanzi {
+  font-family: FZKai;
+  font-size: xx-large;
+}
+.headerHanzi {
+  font-family: FZKai;
+  font-weight: normal;
+  font-size: x-large;
+}
+@font-face {
+  font-family: 'FZKai';
+  src: url(./fonts/FZKai-Z03\ Regular.ttf);
+}

@@ -1,10 +1,10 @@
 import React from "react"
 
-const Word = ({word}) => {
+const Word = ({word, editWord}) => {
   return (
     <tr>
       <td nowrap='nowrap'>
-        <h1>{word.hanzi}</h1>
+        <div className="hanzi">{word.hanzi}</div>
       </td>
       <td nowrap='nowrap'>
         {word.pinyin.map((pinyin, index) => 
@@ -13,11 +13,14 @@ const Word = ({word}) => {
       </td>
       <td>{word.definition.finnish} </td>
       <td>{word.definition.english} </td>
-      <td>{word.definition.explanation} </td>
+      <td><small>{word.definition.explanation} </small></td>
       <td>
         {word.tags.map((tag, index) =>
           <small key={word+'_tag_'+tag}>{(index ? ', ' : '') + tag}</small>
         )}
+      </td>
+      <td>
+        <button type='button' onClick={() => editWord(word.id)}>edit</button>
       </td>
     </tr>
   )

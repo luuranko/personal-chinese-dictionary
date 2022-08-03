@@ -18,10 +18,16 @@ The motivation for this project was born when I kept looking up Chinese words I 
 
 ## Latest changes
 
-- Words can now be added to the database.
-- Correct form of pinyin is validated when adding a word
-- Added notification text to inform about problems when adding new words and confirm that a word was successfully added
-- On the side added some functions in preparation for implementing the modification of previously added words
+- Words can be edited
+  - However this is has been tested as functional only on Chrome; submitting an edited word is currently impossible on Firefox. Fixing this is high on the priority list as the developer is highly partial to Firefox.
+- Added a cancel-button, which clears the input fields. If editing a word, it clears the selection.
+- Added support for words that have toneless syllables
+  - When inputting pinyin, only the first syllable must have tone marker. If there are no spaces or apostrophes between syllables, all but the last one must have tones. E.g. "kan4 qi lai",  "kan4'qi'lai" and "jie3jie" are valid inputs, but "kan4qilai" is not.
+- Slight code refactoring
+  - Moved handling http requests to a separate file.
+  - Separated components into their own files.
+- Visual improvements
+  - Implemented a font for Chinese characters
 
 ## Current functionality
 
@@ -33,6 +39,8 @@ The motivation for this project was born when I kept looking up Chinese words I 
   - english translation
   - explanation
   - tag(s)
+- User can edit previously added words *(only on Chrome)*
+- User can clear the input fields by pressing cancel
 - App notifies the user of some problems and actions
 - User can filter words in the database by character
   - 行 returns 行， 行客， 银行, and so on
@@ -46,6 +54,7 @@ The motivation for this project was born when I kept looking up Chinese words I 
 
 ## Future features
 
+### User experience improvements
 - Notification disappears after a time and/or can be dismissed by clicking
 - User can modify words in the database
 - More functionality to searching
@@ -61,8 +70,6 @@ The motivation for this project was born when I kept looking up Chinese words I 
 - Mass modification options
   - User can change the name of a tag without modifying each word containing it individually
 - Choosing tags will be easier: existing tags can be chosen from a multi-choice dropdown list 
-- Learning challenges
-  - Option to hide translations, explanations and/or pinyin
 - Implementing radicals
   - Words display radicals contained within characters of the word
   - User can filter words by radical
@@ -70,11 +77,24 @@ The motivation for this project was born when I kept looking up Chinese words I 
   - Words display their traditional variant, if available
   - Filtering by hanzi supports traditional characters
 
+### Learning tools
+- Option to hide translations, explanations, pinyin and tags separately or altogether
+- A subtool which displays flashcards based on saved words
+  - The tool displays a random word from the selection chosen by user
+    - Selection defaults to all saved words, but can be limited by tag
+    - Selection is not completely random: words keep track of how often they have been shown, and least often shown and most difficult words are shown more often (more on the specifics below)
+  - The flashcard displays at least the hanzi, and depending on user choice, also the pinyin. Correct answer on the other side reveals translations and tags, and pinyin if not already shown.
+    - Possible further setting: flashcard shows a word that exists among translations, and the other side displays the hanzi that are translated to that word
+  - User has to review how well they knew the word. This statistic is saved and factors into how often the word should be shown.
+  - Words that are easy for the user will be lower priority, and each time showing the word will lower the word's priority. Words that were hard for the user will have a higher priority. Thus the priority will change each time the user is shown a word.
+
+
 ## Credits
 
 - Technical skills learned in large parts from [Full Stack open 2022 -course](https://fullstackopen.com/) and [React documentation](https://reactjs.org/)
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-- List of sounds and pitches from [Chinese Character Web API](http://ccdb.hemiola.com/), also used as testing material
+- Lists of Chinese sounds and pitches from [Chinese Character Web API](http://ccdb.hemiola.com/), also used as testing material
+- Chinese font from [Chinese Fonts](https://chinesefonts.org/fonts/fzkai-z03-regular)
 
 ## Running
 
