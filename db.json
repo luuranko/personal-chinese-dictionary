@@ -62,7 +62,6 @@
       ]
     },
     {
-      "id": 4,
       "hanzi": "星",
       "pinyin": [
         "XING1"
@@ -70,15 +69,15 @@
       "definition": {
         "finnish": "tähti",
         "english": "star",
-        "explanation": "valoa tuottava taivaankappale"
+        "explanation": ""
       },
       "tags": [
         "luonto",
         "astrologia"
-      ]
+      ],
+      "id": 4
     },
     {
-      "id": 5,
       "hanzi": "星期",
       "pinyin": [
         "XING1 QI1"
@@ -86,11 +85,12 @@
       "definition": {
         "finnish": "viikko",
         "english": "week",
-        "explanation": "viikko ajan yksikkönä ja viikonpäivät"
+        "explanation": ""
       },
       "tags": [
         "aika"
-      ]
+      ],
+      "id": 5
     },
     {
       "hanzi": "银行",
@@ -146,7 +146,7 @@
       "definition": {
         "finnish": "yliopisto",
         "english": "university, college",
-        "explanation": "korkeakoulu"
+        "explanation": ""
       },
       "tags": [
         "koulutus",

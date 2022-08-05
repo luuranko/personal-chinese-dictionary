@@ -1,48 +1,12 @@
+import { validatePinyin } from "./ValidationTools"
 
-const SearchResults = (words, pitches, sounds, newSearch, searchType) => {
-  const search = cleanWord(newSearch)
-  if (search.length === 0) {
-    return words
+const PinyinSearch = (words, pitches, sounds, search) => {
+  if (validatePinyin(pitches, sounds, search)) {
+    console.log("Searching by pinyin")
+    return filterWordsByPinyin(words, search)
+  } else {
+    return filterWithSpacelessMultisyllablePinyin(words, search)
   }
-  if (searchType === 'pinyin') {
-    if (validatePinyin(pitches, sounds, search)) {
-      console.log("Searching by pinyin")
-      return filterWordsByPinyin(words, search)
-    } else {
-      return filterWithSpacelessMultisyllablePinyin(words, search)
-    }
-  } else if (searchType === 'hanzi') {
-    console.log('Searching by hanzi')
-    return words.filter(w => w.hanzi.includes(newSearch))
-  }
-}
-
-// Returns the word trimmed and with apostrophes converted to spaces
-const cleanWord = (word) => {
-  return word.toUpperCase().trim().split("'").join(' ').trim()
-}
-
-// Checks if written pinyin is valid
-const validatePinyin = (pitches, sounds, pinyin) => {
-  const search = pinyin.split(" ")
-  let valid = true
-  search.forEach(p => {
-    if (!pitches.includes(p) && !sounds.includes(p)) {
-      valid = false
-    }
-  })
-  return valid
-}
-
-const validatePinyinHasPitch = (pitches, pinyin) => {
-  const search = pinyin.split(" ")
-  let valid = true
-  search.forEach(p => {
-    if (!pitches.includes(p)) {
-      valid = false
-    }
-  })
-  return valid
 }
 
 // Returns list of search results
@@ -147,4 +111,7 @@ const joinPinyinToSpacelessWithoutTones = (pinyin) => {
   return pinyin.split(" ").map(p => removeToneFromSyllable(p)).join("")
 }
 
-export {SearchResults, validatePinyin, validatePinyinHasPitch, cleanWord, splitPinyinWithoutSpacesBySyllable}
+export {
+  PinyinSearch,
+  splitPinyinWithoutSpacesBySyllable
+}

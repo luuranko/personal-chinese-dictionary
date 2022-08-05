@@ -1,3 +1,39 @@
+body {
+  background-color: antiquewhite;
+  color:darkslategray;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+button {
+  text-align: center;
+  padding: 5px 10px;
+  background-color:snow;
+  border: none;
+  color: darkslategray;
+  transition-duration: 0.2s;
+}
+button:hover {
+  background-color:peru;
+  color:snow;
+}
+select {
+  text-align: center;
+  padding: 5px 10px;
+  background-color:snow;
+  border: none;
+  color: darkslategray;
+}
+input {
+  padding: 5px 10px;
+  background-color: snow;
+  border: none;
+  color: darkslategray;
+}
+.results {
+  width: 100%;
+}
 td {
   text-align: center;
   border-spacing: 30 px;
@@ -17,6 +53,7 @@ p.notif {
   font-family: FZKai;
   font-weight: normal;
   font-size: x-large;
+  color:maroon;
 }
 @font-face {
   font-family: 'FZKai';

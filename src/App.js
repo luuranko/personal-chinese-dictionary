@@ -4,12 +4,12 @@ import WordList from "./components/WordList";
 import SearchForm from "./components/SearchForm"
 import Notification from "./components/Notification";
 import {
-  SearchResults,
   validatePinyin,
   validatePinyinHasPitch,
-  cleanWord,
-  splitPinyinWithoutSpacesBySyllable
-} from "./components/SearchResults";
+  cleanWord
+} from "./services/ValidationTools";
+import {splitPinyinWithoutSpacesBySyllable} from "./services/PinyinSearch"
+import SearchResults from "./services/SearchResults";
 import AddWordForm from "./components/AddWordForm";
 
 const App = () => {
@@ -182,7 +182,7 @@ const App = () => {
     console.log('Submitting new word')
     event.preventDefault()
     const word = wordObject()
-    if (word == null && word == undefined) {
+    if (!word) {
       console.log('something is wrong. Aborting add')
       return
     }
@@ -236,7 +236,7 @@ const App = () => {
     const word = wordObject()
     console.log('word is ', word)
     console.log('id is ', editingId)
-    if (word == null || word == undefined) {
+    if (!word) {
       console.log('something is wrong. Aborting')
       return
     }

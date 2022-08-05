@@ -8,7 +8,7 @@ const Word = ({word, editWord}) => {
       </td>
       <td nowrap='nowrap'>
         {word.pinyin.map((pinyin, index) => 
-          <small key={word+'_pinyin_'+pinyin}>{(index ? ', ' : '') + pinyin}</small>
+          <small key={word+'_pinyin_'+pinyin}>{(index ? ', ' : '') + pinyin.toLowerCase()}</small>
         )}
       </td>
       <td>{word.definition.finnish} </td>

@@ -11,10 +11,10 @@ const WordList = ({words, editWord}) => {
   return (
     <div>
       <p>Found {words.length} results</p>
-      <table>
+      <table className="results">
         <tbody>
             <tr>
-              <th className="headerHanzi">单词</th>
+              <th className="headerHanzi">汉字</th>
               <th className="headerHanzi">拼音</th>
               <th className="headerHanzi">芬兰语</th>
               <th className="headerHanzi">英语</th>

@@ -12,22 +12,14 @@ This app aims to provide a method of keeping track of the user's learned Mandari
   - translation (Finnish or English) and explanation
   - tags
 
-## Motivation
-
-The motivation for this project was born when I kept looking up Chinese words I thought I hadn't already learnt. This app should make it more convenient for me to rehearse old words when connecting them to a certain category (I certainly will create a tag for terms related to imperial court politics).
-
 ## Latest changes
 
-- Words can be edited
-  - However this is has been tested as functional only on Chrome; submitting an edited word is currently impossible on Firefox. Fixing this is high on the priority list as the developer is highly partial to Firefox.
-- Added a cancel-button, which clears the input fields. If editing a word, it clears the selection.
-- Added support for words that have toneless syllables
-  - When inputting pinyin, only the first syllable must have tone marker. If there are no spaces or apostrophes between syllables, all but the last one must have tones. E.g. "kan4 qi lai",  "kan4'qi'lai" and "jie3jie" are valid inputs, but "kan4qilai" is not.
-- Slight code refactoring
-  - Moved handling http requests to a separate file.
-  - Separated components into their own files.
 - Visual improvements
-  - Implemented a font for Chinese characters
+  - changed background colors for several elements
+  - improved spacing and margins
+  - pinyin is now lowercase
+- Code refactoring
+  - moved some code functionality in SearchResults into separate files for easier readability
 
 ## Current functionality
 
@@ -88,6 +80,9 @@ The motivation for this project was born when I kept looking up Chinese words I 
   - User has to review how well they knew the word. This statistic is saved and factors into how often the word should be shown.
   - Words that are easy for the user will be lower priority, and each time showing the word will lower the word's priority. Words that were hard for the user will have a higher priority. Thus the priority will change each time the user is shown a word.
 
+## Motivation
+
+The motivation for this project was born when I kept looking up Chinese words I thought I hadn't already learnt. This app should make it more convenient for me to rehearse old words when connecting them to a certain category (I certainly will create a tag for terms related to imperial court politics).
 
 ## Credits
 
