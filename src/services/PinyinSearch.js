@@ -2,7 +2,6 @@ import { validatePinyin } from "./ValidationTools"
 
 const PinyinSearch = (words, pitches, sounds, search) => {
   if (validatePinyin(pitches, sounds, search)) {
-    console.log("Searching by pinyin")
     return filterWordsByPinyin(words, search)
   } else {
     return filterWithSpacelessMultisyllablePinyin(words, search)
@@ -12,7 +11,6 @@ const PinyinSearch = (words, pitches, sounds, search) => {
 // Returns list of search results
 const filterWordsByPinyin = (words, searchTerm) => {
   const search = searchTerm.split(" ")
-  console.log('In filterWordsbyPinyin, search is: ', search)
   const matching = [] // list of search results
   // Leave out words that are shorter than the search term
   const wordsToProcess = words.filter(w => w.hanzi.split("").length >= search.length)
@@ -49,7 +47,6 @@ const filterWithSpacelessMultisyllablePinyin = (words, pinyin) => {
   const parts = splitPinyinWithoutSpacesBySyllable(pinyin)
   const matching = [] // list of search results
   if (parts.length > 1) {
-    // Entä jos syöte on tasoa "hao3meihao"? Korjaa myöhemmin
     return filterWordsByPinyin(words, parts.join(" "))
   } else { // If no tone markers, style "meihao"
     words.forEach(w => {

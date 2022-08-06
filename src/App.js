@@ -11,6 +11,7 @@ import {
 import {splitPinyinWithoutSpacesBySyllable} from "./services/PinyinSearch"
 import SearchResults from "./services/SearchResults";
 import AddWordForm from "./components/AddWordForm";
+import { getAllTags } from "./services/TagSearch";
 
 const App = () => {
   const [words, setWords] = useState([])
@@ -29,17 +30,9 @@ const App = () => {
 
   const [editingId, setEditingId] = useState(-1)
 
-  // hemiola site db
-  // const site = 'http://ccdb.hemiola.com/characters/'
-  // const filterPin = 'mandarin/'
-  // const filterHan = 'string/'
-  // const filterB1 = '?filter=gb+!simplifiable&fields=string,kDefinition,kMandarin,kFrequency'
-
   const [newSearch, setNewSearch] = useState('')
-
   const [searchType, setNewSearchType] = useState('pinyin')
-
-  console.log('RELOADING PAGE')
+  const [tagSearch, setTagSearch] = useState('all')
 
   // Fetch list of saved words from db.json
   useEffect(() => {
@@ -73,11 +66,15 @@ const App = () => {
     let canPost = true
     const hanzi = newHanzi.trim()
     if (hanzi === '') {
-      warn('Enter valid hanzi')
+      warn('Hanzi cannot be empty')
       canPost = false
       return
     }
-
+    if (words.find(w => w.hanzi === hanzi)) {
+      warn('This word already exists')
+      canPost = false
+      return
+    }
     if (newPinyin === '') {
       warn('Enter valid pinyin')
       canPost = false
@@ -109,7 +106,6 @@ const App = () => {
       } else {
         pinyinIsValid = true
         const parts = splitPinyinWithoutSpacesBySyllable(p)
-        console.log(parts)
         // All but last syllable must have pitch
         for (let i = 0; i < parts.length - 1; i++) {
           if (!validatePinyinHasPitch(pitches, parts[i])) {
@@ -165,12 +161,14 @@ const App = () => {
     console.log('notifying of ', text)
     setNotif(text)
     setIsWarning(false)
+    setTimeout(() => setNotif(''), 5000)
   }
 
   const warn = (text) => {
     console.log('warning of ', text)
     setNotif(text)
     setIsWarning(true)
+    setTimeout(() => setNotif(''), 5000)
   }
 
   const scrollToTop = () => {
@@ -179,7 +177,6 @@ const App = () => {
   }
 
   const addWord = (event) => {
-    console.log('Submitting new word')
     event.preventDefault()
     const word = wordObject()
     if (!word) {
@@ -202,7 +199,6 @@ const App = () => {
   }
 
   const editWord = (id) => {
-    console.log('Editing word')
     setEditingId(id)
     const word = words.find(w => w.id === id)
     notify(`Editing ${word.hanzi}`)
@@ -217,7 +213,6 @@ const App = () => {
   }
 
   const cancel = () => {
-    console.log('Cancelled')
     if (editingId > -1) {
       setEditingId(-1)
       notify('Cancelled editing.')
@@ -231,11 +226,7 @@ const App = () => {
   }
 
   const editWordSubmit = () => {
-    console.log('first print in EditWordSubmit')
-    console.log('Submitting edited word')
     const word = wordObject()
-    console.log('word is ', word)
-    console.log('id is ', editingId)
     if (!word) {
       console.log('something is wrong. Aborting')
       return
@@ -243,7 +234,6 @@ const App = () => {
     wordService
       .update(editingId, word)
       .then(returnedWord => {
-        console.log('promise fulfilled')
         setEditingId(-1)
         setWords(words.map(w => w.id !== editingId ? w : returnedWord))
         setNewHanzi('')
@@ -252,12 +242,8 @@ const App = () => {
         setNewEnglish('')
         setNewExplain('')
         setNewTags('')
-        console.log('axios finished, now notifying')
         notify(`Saved changes to ${returnedWord}.`)
       })
-      // .catch(error => {
-      //   console.log('Error in putting ', word, ' in ', editingId)
-      // })
   }
 
   const handleNewSearchChange = (event) => {
@@ -265,7 +251,6 @@ const App = () => {
   }
 
   const handleSearchTypeChange = (event) => {
-    console.log('Changed search type to: ', event.target.value)
     setNewSearchType(event.target.value)
   }
 
@@ -291,6 +276,10 @@ const App = () => {
 
   const handleNewTagsChange = (event) => {
     setNewTags(event.target.value)
+  }
+
+  const handleTagSearchChange = (event) => {
+    setTagSearch(event.target.value)
   }
 
   return (
@@ -331,13 +320,15 @@ const App = () => {
               newSearch={newSearch}
               handleNewSearchChange={handleNewSearchChange}
               handleSearchTypeChange={handleSearchTypeChange}
+              tags={getAllTags(words)}
+              handleTagSearchChange={handleTagSearchChange}
             />
           </td>
           </tr>
         </tbody>
       </table>
       <WordList
-        words={SearchResults(words, pitches, sounds, newSearch, searchType)}
+        words={SearchResults(words, pitches, sounds, newSearch, searchType, tagSearch)}
         editWord={editWord}
       />
     </div>

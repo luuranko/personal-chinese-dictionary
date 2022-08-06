@@ -18,7 +18,8 @@ const getWordsByTag = (words, tag) => {
   const results = []
   words.forEach(w => {
     w.tags.forEach(t => {
-      if (t == tag) {
+      if (t.toLowerCase() === tag.toLowerCase()
+          && !results.includes(w)) {
         results.push(w)
       }
     });

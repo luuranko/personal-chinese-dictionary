@@ -33,21 +33,37 @@ input {
 }
 .results {
   width: 100%;
+  border-spacing: 0px;
 }
-td {
+.results_td {
   text-align: center;
-  border-spacing: 30 px;
-  padding: 30 px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
 }
+.results_td:first-child {
+  text-align: center;
+  padding-left: 20px;
+}
+.results_tr:nth-child(even) {
+  background-color:oldlace;
+}
+/* .results_tr:nth-child(odd) {
+  background-color:bisque
+} */
 p.warning {
-  color: red;
+  color:firebrick;
+  min-height: 20px;
+  max-height: 20px;
 }
 p.notif {
-  color: green;
+  color:olivedrab;
+  min-height: 20px;
+  max-height: 20px;
 }
 .hanzi {
   font-family: FZKai;
-  font-size: xx-large;
+  font-size: xxx-large;
 }
 .headerHanzi {
   font-family: FZKai;

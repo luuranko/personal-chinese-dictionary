@@ -14,12 +14,11 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 
 ## Latest changes
 
+- Implemented filtering by tag
+- Adding the same word multiple times is no longer possible
 - Visual improvements
-  - changed background colors for several elements
-  - improved spacing and margins
-  - pinyin is now lowercase
-- Code refactoring
-  - moved some code functionality in SearchResults into separate files for easier readability
+  - Notifications now have fixed size and more pleasant colors
+  - Search results table is now more clear and spacey
 
 ## Current functionality
 
@@ -43,25 +42,26 @@ This app aims to provide a method of keeping track of the user's learned Mandari
     - "xing" and "qi" both return words matching "xing qi", but "xi", "xin" or "q" will not
   - User can search for longer words by writing them with spaces or apostrophes separating syllables, or without using spaces or apostrophes if at least each but the last syllable has a tone marker or none have
     - "xing qi tian", "xing'qi'tian", "xing1'qi tian1", "xingqitian", "xing1qi1tian" and "xing1qi1tian1" all return words matching "xing1 qi1 tian1"
+- User can filter words by tag
+  - User can select tag to filter with from a dropdown menu, but by default no tag is selected and all results will be shown
+  - Pinyin and hanzi search still works on top of this
 
 ## Future features
 
 ### User experience improvements
-- Notification disappears after a time and/or can be dismissed by clicking
-- User can modify words in the database
+- Notifications can be dismissed by clicking
 - More functionality to searching
   - Smarter filtering by pinyin: search "xingqi1" should return "xing1 qi1", etc.
   - Support for searching with style pīnyīn instead of PIN1YIN1
-  - User can search with limited regular expressions
-  - User can search by tag
-  - User can search by translation and explanation
+  - User can filter pinyin with limited regular expressions
+    - support for OR and wildcard symbols
+  - User can filter by translation and explanation
 - Import words from a text file
 - Visual improvements
   - Show pinyin in a style like pīnyīn instead of PIN1YIN1
   - Pinyin is shown below the character
 - Mass modification options
   - User can change the name of a tag without modifying each word containing it individually
-- Choosing tags will be easier: existing tags can be chosen from a multi-choice dropdown list 
 - Implementing radicals
   - Words display radicals contained within characters of the word
   - User can filter words by radical
@@ -93,9 +93,7 @@ The motivation for this project was born when I kept looking up Chinese words I 
 
 ## Running
 
-In the project directory:
-1. `npm run server`
-2. `npm start`
+In the project directory run `npm run server` and `npm start` in different tabs. 
 
 ### `npm start`
 
@@ -104,11 +102,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
