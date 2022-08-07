@@ -14,11 +14,10 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 
 ## Latest changes
 
-- Implemented filtering by tag
-- Adding the same word multiple times is no longer possible
-- Visual improvements
-  - Notifications now have fixed size and more pleasant colors
-  - Search results table is now more clear and spacey
+- Implemented filtering by meaning
+  - both Finnish and English translations are checked
+- When filling out a word's tags, the user now can choose them from a list of existing tags in addition to writing them.
+- User can no longer input the same tag several times for a word.
 
 ## Current functionality
 
@@ -45,6 +44,8 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 - User can filter words by tag
   - User can select tag to filter with from a dropdown menu, but by default no tag is selected and all results will be shown
   - Pinyin and hanzi search still works on top of this
+- User can filter words by meaning
+  - search term is checked from both Finnish and English translations but not from explanation
 
 ## Future features
 
@@ -55,7 +56,6 @@ This app aims to provide a method of keeping track of the user's learned Mandari
   - Support for searching with style pīnyīn instead of PIN1YIN1
   - User can filter pinyin with limited regular expressions
     - support for OR and wildcard symbols
-  - User can filter by translation and explanation
 - Import words from a text file
 - Visual improvements
   - Show pinyin in a style like pīnyīn instead of PIN1YIN1

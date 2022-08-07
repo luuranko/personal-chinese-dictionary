@@ -8,7 +8,7 @@ const Word = ({word, editWord}) => {
       </td>
       <td className="results_td"  nowrap='nowrap'>
         {word.pinyin.map((pinyin, index) => 
-          <small key={word+'_pinyin_'+pinyin}>{(index ? ', ' : '') + pinyin.toLowerCase()}</small>
+          <small key={word+'_pinyin_'+pinyin}>{(index ? ' / ' : '') + pinyin.toLowerCase()}</small>
         )}
       </td>
       <td className="results_td" >{word.definition.finnish} </td>
@@ -16,7 +16,7 @@ const Word = ({word, editWord}) => {
       <td className="results_td" ><small>{word.definition.explanation} </small></td>
       <td className="results_td" >
         {word.tags.map((tag, index) =>
-          <small key={word+'_tag_'+tag}>{(index ? ' / ' : '') + tag}</small>
+          <small key={word+'_tag_'+tag}>{(index ? ', ' : '') + tag}</small>
         )}
       </td>
       <td className="results_td" >

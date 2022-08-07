@@ -18,7 +18,7 @@ const SearchForm = (props) => {
               <select name="tagsearchfield" id="tagsearchfield"
               onChange={handleTagSearchChange}
               >
-                <option key="all" value="all">-</option>
+                <option key="all" value="all"></option>
                 {tags.map(tag =>
                   <option key={tag} value={tag}>{tag}</option>  
                 )}
@@ -34,6 +34,7 @@ const SearchForm = (props) => {
               >
                 <option value="pinyin">pinyin</option>
                 <option value="hanzi">hanzi</option>
+                <option value="meaning">meaning</option>
               </select>
             </td>
             <td>

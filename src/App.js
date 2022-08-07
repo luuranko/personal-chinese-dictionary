@@ -62,7 +62,6 @@ const App = () => {
   }, [])
 
   const wordObject = () => {
-    console.log('Accessing wordObject')
     let canPost = true
     const hanzi = newHanzi.trim()
     if (hanzi === '') {
@@ -70,7 +69,7 @@ const App = () => {
       canPost = false
       return
     }
-    if (words.find(w => w.hanzi === hanzi)) {
+    if (editingId === -1 && words.find(w => w.hanzi === hanzi)) {
       warn('This word already exists')
       canPost = false
       return
@@ -138,7 +137,7 @@ const App = () => {
     const tags = []
     newTags.split(',').forEach(t => {
       t = t.trim()
-      if (t !== '') {
+      if (t !== '' && !tags.includes(t)) {
         tags.push(t)
       }
     })
@@ -312,6 +311,7 @@ const App = () => {
                 handleNewExplainChange={handleNewExplainChange}
                 newTags={newTags}
                 handleNewTagsChange={handleNewTagsChange}
+                tags={getAllTags(words)}
                 cancel={cancel}
               />
             </td>

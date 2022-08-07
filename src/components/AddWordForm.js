@@ -9,6 +9,7 @@ const AddWordForm = (props) => {
     newEnglish, handleNewEnglishChange,
     newExplain, handleNewExplainChange,
     newTags, handleNewTagsChange,
+    tags,
     cancel
   } = props
   let submitFunction = addWord
@@ -68,20 +69,41 @@ const AddWordForm = (props) => {
               </td>
             </tr>
             <tr>
-              <td title='Separate tags with a comma'>
+              <td title='Create new tags by writing or choose existing tags from the list. Separate tags with a comma.'>
                 Tags
               </td>
               <td>
                 <input
+                  id="tagfield"
                   value={newTags}
                   onChange={handleNewTagsChange}
                 />
               </td>
+              <td>
+                <select name="tagchoicefield" id="tagchoicefield"
+                onChange={()=> {
+                  if (document.getElementById("tagchoicefield").value !== 'none'
+                      && !document.getElementById("tagfield").value.includes(document.getElementById("tagchoicefield").value)) {
+                    document.getElementById("tagfield").value += document.getElementById("tagchoicefield").value + ', '
+                  }
+                }}
+                >
+                  <option key="none" value="none"></option>
+                  {tags.map(tag =>
+                    <option key={tag} value={tag}>{tag}</option>  
+                  )}
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button type='submit'>save</button>
+                <button type="button" onClick={() => cancel()}>cancel</button>
+              </td>
             </tr>
           </tbody>
         </table>
-        <button type='submit'>save</button>
-        <button type="button" onClick={() => cancel()}>cancel</button>
       </form>
     </div>
   )

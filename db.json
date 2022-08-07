@@ -247,6 +247,54 @@
         "perhe"
       ],
       "id": 15
+    },
+    {
+      "hanzi": "例如",
+      "pinyin": [
+        "LI2 RU2"
+      ],
+      "definition": {
+        "finnish": "esimerkki, esimerkiksi",
+        "english": "example, for example",
+        "explanation": ""
+      },
+      "tags": [
+        "adverbi",
+        "abstrakti"
+      ],
+      "id": 16
+    },
+    {
+      "hanzi": "他",
+      "pinyin": [
+        "TA1"
+      ],
+      "definition": {
+        "finnish": "hän",
+        "english": "he, him",
+        "explanation": "yksikön 3. persoonan pronomini, maskuliini"
+      },
+      "tags": [
+        "pronomini",
+        "miespuolinen"
+      ],
+      "id": 17
+    },
+    {
+      "hanzi": "她",
+      "pinyin": [
+        "TA1"
+      ],
+      "definition": {
+        "finnish": "hän",
+        "english": "she, her",
+        "explanation": "yksikön 3. persoonan pronomini, feminiini"
+      },
+      "tags": [
+        "pronomini",
+        "naispuolinen"
+      ],
+      "id": 18
     }
   ],
   "sounds": [
