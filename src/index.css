@@ -48,9 +48,9 @@ input {
 .results_tr:nth-child(even) {
   background-color:oldlace;
 }
-/* .results_tr:nth-child(odd) {
-  background-color:bisque
-} */
+.hidden {
+  visibility:hidden;
+}
 p.warning {
   color:firebrick;
   min-height: 20px;

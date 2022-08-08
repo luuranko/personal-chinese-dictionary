@@ -4,6 +4,7 @@ import WordList from "./components/WordList";
 import SearchForm from "./components/SearchForm"
 import Notification from "./components/Notification";
 import {
+  validateHanzi,
   validatePinyin,
   validatePinyinHasPitch,
   cleanWord
@@ -65,17 +66,23 @@ const App = () => {
     let canPost = true
     const hanzi = newHanzi.trim()
     if (hanzi === '') {
-      warn('Hanzi cannot be empty')
+      warn('Hanzi cannot be empty.')
       canPost = false
       return
     }
     if (editingId === -1 && words.find(w => w.hanzi === hanzi)) {
-      warn('This word already exists')
+      warn('This word has already been added.')
       canPost = false
       return
     }
+    if (!validateHanzi(hanzi)) {
+      warn('The word must be written in hanzi.')
+      canPost = false
+      return
+    }
+    
     if (newPinyin === '') {
-      warn('Enter valid pinyin')
+      warn('Enter valid pinyin.')
       canPost = false
       return
     }
@@ -119,7 +126,7 @@ const App = () => {
         if (pinyinIsValid) {
           pinyin.push(parts.join(" "))
         } else {
-          warn('Enter valid pinyin')
+          warn('Enter valid pinyin.')
           canPost = false
         }
       }
@@ -133,7 +140,6 @@ const App = () => {
       english: english,
       explanation: explain
     }
-
     const tags = []
     newTags.split(',').forEach(t => {
       t = t.trim()
@@ -179,7 +185,7 @@ const App = () => {
     event.preventDefault()
     const word = wordObject()
     if (!word) {
-      console.log('something is wrong. Aborting add')
+      console.log('Unable to add word.')
       return
     }
     wordService
@@ -227,7 +233,7 @@ const App = () => {
   const editWordSubmit = () => {
     const word = wordObject()
     if (!word) {
-      console.log('something is wrong. Aborting')
+      console.log('Unable to submit edit of word.')
       return
     }
     wordService
@@ -281,6 +287,7 @@ const App = () => {
     setTagSearch(event.target.value)
   }
 
+  const addwordformtitle = editingId > -1 ? 'Edit word' : 'Add a new word'
   return (
     <div>
       <table>
@@ -295,7 +302,28 @@ const App = () => {
           </tr>
           <tr>
             <td>
+              <label
+                htmlFor='addwordform'  
+              >
+                <h4>
+                  {addwordformtitle}
+                </h4>
+              </label>
+            </td>
+            <td>
+              <label
+                htmlFor='searchform'  
+              >
+                <h4>
+                  Filter results
+                </h4>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td>
               <AddWordForm
+                id='addwordform'
                 addWord={addWord}
                 editingId={editingId}
                 editWordSubmit={editWordSubmit}
@@ -317,6 +345,7 @@ const App = () => {
             </td>
           <td>
             <SearchForm
+              id='searchform'
               newSearch={newSearch}
               handleNewSearchChange={handleNewSearchChange}
               handleSearchTypeChange={handleSearchTypeChange}

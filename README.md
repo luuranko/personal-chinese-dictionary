@@ -14,10 +14,9 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 
 ## Latest changes
 
-- Implemented filtering by meaning
-  - both Finnish and English translations are checked
-- When filling out a word's tags, the user now can choose them from a list of existing tags in addition to writing them.
-- User can no longer input the same tag several times for a word.
+- The word submission form now checks that the characters in the hanzi input field are in fact only hanzi and not some other symbols.
+- Added labels and tooltips for input fields.
+- Fixed issue with tags chosen from dropdown not properly updating in the tag input field.
 
 ## Current functionality
 

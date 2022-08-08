@@ -12,65 +12,123 @@ const AddWordForm = (props) => {
     tags,
     cancel
   } = props
-  let submitFunction = addWord
-  if (editingId > -1) {
-    submitFunction = editWordSubmit
+  const submitFunction = editingId > -1 ? editWordSubmit : addWord
+
+  // Necessary to make React record the changed tags when using dropdown choice
+  function changeInputFieldValue(field, value) {
+    let prevValue = field.value
+    field.value = value
+    let event = new Event('input', { target: field, bubbles: true})
+    let tracker = field._valueTracker
+    if (tracker) {
+      tracker.setValue(prevValue)
+    }
+    field.dispatchEvent(event)
   }
+
   return (
     <div>
       <form onSubmit={submitFunction}>
         <table>
           <tbody>
             <tr>
-              <td>Hanzi</td>
+              <td>
+                <label
+                  htmlFor='hanzi'
+                  title='Write a word in hanzi that is not already saved.'
+                >
+                  Hanzi
+                </label>
+              </td>
               <td>
                 <input
+                  type='text'
+                  id='hanzi'
                   value={newHanzi}
                   onChange={handleNewHanziChange}
                 />
               </td>
             </tr>
             <tr>
-              <td title='Separate alternative pinyins with a comma'>
-                Pinyin
+              <td>
+                <label
+                  htmlFor='pinyin'
+                  title='Separate alternative pinyins with a comma'
+                >
+                  Pinyin
+                </label>
               </td>
               <td>
                 <input
+                  type='text'
+                  id='pinyin'
                   value={newPinyin}
                   onChange={handleNewPinyinChange}
                 />
               </td>
             </tr>
             <tr>
-              <td>Finnish</td>
+              <td>
+                <label
+                  htmlFor='finnish'
+                  title='Write the Finnish translations.'
+                >
+                  Finnish
+                </label>
+              </td>
               <td>
                 <input
+                  type='text'
+                  id='finnish'
                   value={newFinnish}
                   onChange={handleNewFinnishChange}
                 />
               </td>
             </tr>
             <tr>
-              <td>English</td>
+              <td>
+                <label
+                  htmlFor='english'
+                  title='Write the English translations.'
+                >
+                  English
+                </label>
+              </td>
               <td>
                 <input
+                  type='text'
+                  id='english'
                   value={newEnglish}
                   onChange={handleNewEnglishChange}
                 />
               </td>
             </tr>
             <tr>
-              <td>Explanation</td>
+              <td>
+                <label
+                  htmlFor='explain'
+                  title='Add further explanation for the word if needed.'
+                >
+                  Explanation
+                </label>
+              </td>
               <td>
                 <input
+                  type='text'
+                  id='explain'
                   value={newExplain}
                   onChange={handleNewExplainChange}
                 />
               </td>
             </tr>
             <tr>
-              <td title='Create new tags by writing or choose existing tags from the list. Separate tags with a comma.'>
-                Tags
+              <td>
+                <label
+                  htmlFor='tagfield'
+                  title='Create new tags by writing or choose existing tags from the list. Separate tags with a comma.'
+                >
+                  Tags
+                </label>
               </td>
               <td>
                 <input
@@ -84,8 +142,9 @@ const AddWordForm = (props) => {
                 onChange={()=> {
                   if (document.getElementById("tagchoicefield").value !== 'none'
                       && !document.getElementById("tagfield").value.includes(document.getElementById("tagchoicefield").value)) {
-                    document.getElementById("tagfield").value += document.getElementById("tagchoicefield").value + ', '
+                    changeInputFieldValue(document.getElementById("tagfield"), document.getElementById("tagchoicefield").value + ",")
                   }
+                  console.log(document.getElementById("tagfield").value)
                 }}
                 >
                   <option key="none" value="none"></option>

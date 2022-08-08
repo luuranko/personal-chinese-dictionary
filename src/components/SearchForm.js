@@ -13,10 +13,17 @@ const SearchForm = (props) => {
       <table>
         <tbody>
           <tr>
-            <td><small>Filter by tag</small></td>
             <td>
-              <select name="tagsearchfield" id="tagsearchfield"
-              onChange={handleTagSearchChange}
+              <label
+                htmlFor='tagsearchfield'
+                title='Choose a tag to filter results with.'
+              >
+                Filter by tag
+              </label>
+              <select
+                name="tagsearchfield"
+                id="tagsearchfield"
+                onChange={handleTagSearchChange}
               >
                 <option key="all" value="all"></option>
                 {tags.map(tag =>
@@ -26,10 +33,16 @@ const SearchForm = (props) => {
             </td>
           </tr>
           <tr>
-            <td><small>Filter by</small></td>
             <td>
+              <label
+                htmlFor='searchtypefield'
+                title='Choose an attribute to filter with and write the filter words.'
+              >
+                Filter by
+              </label>
               <select
-                name="searchtypefield" id="searchtypefield"
+                name="searchtypefield"
+                id="searchtypefield"
                 onChange={handleSearchTypeChange}
               >
                 <option value="pinyin">pinyin</option>
@@ -38,17 +51,23 @@ const SearchForm = (props) => {
               </select>
             </td>
             <td>
-            <input
-              value={newSearch}
-              onChange={handleNewSearchChange}
-            />
+              <label
+                htmlFor='searchfield'
+                className='hidden'
+              >
+                Filter words
+              </label>
+              <input
+                name='searchfield'
+                id='searchfield'
+                value={newSearch}
+                onChange={handleNewSearchChange}
+              />
             </td>
           </tr>
         </tbody>
       </table>
-      
     </div>
-    
   )
 }
 

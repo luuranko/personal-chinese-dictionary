@@ -295,6 +295,36 @@
         "naispuolinen"
       ],
       "id": 18
+    },
+    {
+      "hanzi": "雨",
+      "pinyin": [
+        "YU3"
+      ],
+      "definition": {
+        "finnish": "sade",
+        "english": "rain",
+        "explanation": ""
+      },
+      "tags": [
+        "luonto"
+      ],
+      "id": 19
+    },
+    {
+      "hanzi": "雪",
+      "pinyin": [
+        "XUE3"
+      ],
+      "definition": {
+        "finnish": "lumi",
+        "english": "snow",
+        "explanation": ""
+      },
+      "tags": [
+        "luonto"
+      ],
+      "id": 20
     }
   ],
   "sounds": [
