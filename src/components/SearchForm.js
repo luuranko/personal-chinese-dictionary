@@ -9,7 +9,7 @@ const SearchForm = (props) => {
     handleTagSearchChange,
   } = props
   return (
-    <div>
+    <div className='searchForm'>
       <table>
         <tbody>
           <tr>

@@ -11,7 +11,7 @@ const getAllTags = (words) => {
       }
     });
   });
-  return tags
+  return sortTagsByUsage(tags, words)
 }
 
 const getWordsByTag = (words, tag) => {
@@ -25,6 +25,24 @@ const getWordsByTag = (words, tag) => {
     });
   })
   return results
+}
+
+// Tag that has most words associated goes first
+// in case of a tie, sort by alphabetical order
+const sortTagsByUsage = (list, words) => {
+  return list.sort((a, b) => {
+    const wordsForTagA = getWordsByTag(words, a)
+    const wordsForTagB = getWordsByTag(words, b)
+    let comparison = 0
+    if (wordsForTagA < wordsForTagB) {
+      comparison = 1
+    } else if (wordsForTagA > wordsForTagB) {
+      comparison = -1
+    } else {
+      comparison = a.toLowerCase() < b.toLowerCase() ? -1 : 1
+    }
+    return comparison
+  })
 }
 
 export {

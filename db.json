@@ -166,7 +166,8 @@
       },
       "tags": [
         "koulutus",
-        "instituutio"
+        "instituutio",
+        "sijainti"
       ],
       "id": 10
     },
@@ -325,6 +326,36 @@
         "luonto"
       ],
       "id": 20
+    },
+    {
+      "hanzi": "一",
+      "pinyin": [
+        "YI1"
+      ],
+      "definition": {
+        "finnish": "yksi",
+        "english": "one",
+        "explanation": ""
+      },
+      "tags": [
+        "numero"
+      ],
+      "id": 21
+    },
+    {
+      "hanzi": "个",
+      "pinyin": [
+        "GE4"
+      ],
+      "definition": {
+        "finnish": "yksikkö, kappale",
+        "english": "individual, piece",
+        "explanation": "universaali mittasana"
+      },
+      "tags": [
+        "mittasana"
+      ],
+      "id": 22
     }
   ],
   "sounds": [

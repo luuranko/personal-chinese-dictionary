@@ -19,7 +19,7 @@ const Word = ({word, editWord}) => {
           <small key={word+'_tag_'+tag}>{(index ? ', ' : '') + tag}</small>
         )}
       </td>
-      <td className="results_td" >
+      <td className="results_editBtn" >
         <button type='button' onClick={() => editWord(word.id)}>edit</button>
       </td>
     </tr>

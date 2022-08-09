@@ -62,6 +62,10 @@ const App = () => {
       })
   }, [])
 
+  window.onscroll = function() {
+    scrollFunction()
+  }
+
   const wordObject = () => {
     let canPost = true
     const hanzi = newHanzi.trim()
@@ -174,6 +178,14 @@ const App = () => {
     setNotif(text)
     setIsWarning(true)
     setTimeout(() => setNotif(''), 5000)
+  }
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      document.getElementById('scrollToTopBtn').style.display = 'block'
+    } else {
+      document.getElementById('scrollToTopBtn').style.display = 'none'
+    }
   }
 
   const scrollToTop = () => {
@@ -360,6 +372,15 @@ const App = () => {
         words={SearchResults(words, pitches, sounds, newSearch, searchType, tagSearch)}
         editWord={editWord}
       />
+      <div>
+      <input
+        type='button'
+        className="scrollToTopBtn"
+        id='scrollToTopBtn'
+        onClick={scrollToTop}
+        value="Up"
+      />
+      </div>
     </div>
   );
 }

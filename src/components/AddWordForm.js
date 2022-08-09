@@ -17,7 +17,7 @@ const AddWordForm = (props) => {
   // Necessary to make React record the changed tags when using dropdown choice
   function changeInputFieldValue(field, value) {
     let prevValue = field.value
-    field.value = value
+    field.value = prevValue !== '' ? prevValue + ', ' + value : value
     let event = new Event('input', { target: field, bubbles: true})
     let tracker = field._valueTracker
     if (tracker) {
@@ -28,7 +28,7 @@ const AddWordForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={submitFunction}>
+      <form onSubmit={submitFunction} autoComplete='off'>
         <table>
           <tbody>
             <tr>
@@ -144,7 +144,6 @@ const AddWordForm = (props) => {
                       && !document.getElementById("tagfield").value.includes(document.getElementById("tagchoicefield").value)) {
                     changeInputFieldValue(document.getElementById("tagfield"), document.getElementById("tagchoicefield").value + ",")
                   }
-                  console.log(document.getElementById("tagfield").value)
                 }}
                 >
                   <option key="none" value="none"></option>

@@ -31,6 +31,10 @@ input {
   border: none;
   color: darkslategray;
 }
+th {
+  min-width: 100px;
+  max-width: 100px;
+}
 .results {
   width: 100%;
   border-spacing: 0px;
@@ -40,6 +44,13 @@ input {
   padding-top: 20px;
   padding-bottom: 20px;
   padding-right: 20px;
+  min-width: 100px;
+}
+.results_editBtn {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 10px;
 }
 .results_td:first-child {
   text-align: center;
@@ -50,6 +61,30 @@ input {
 }
 .hidden {
   visibility:hidden;
+}
+.scrollToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color:lightblue;
+  color:darkslategray;
+  padding: 15px;
+  font-size: 18px;
+  transition-duration: 0.2s;
+}
+.scrollToTopBtn:hover {
+  background-color:midnightblue;
+  color: snow;
+}
+div {
+  display: inline-block;
+}
+.rightAlign {
+  float:right;
 }
 p.warning {
   color:firebrick;
