@@ -14,11 +14,7 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 
 ## Latest changes
 
-- Added sorting options for words
-  - Words can be sorted by chronological orders, by pinyin or by hanzi
-- Added a button for scrolling back to top
-- Fixed issue with tags chosen from dropdown replacing the existing tags instead of appending to the list.
-- Tags are now sorted by how often they are used, most used tags being first in the list
+- Some code refactoring for notifications
 
 ## Current functionality
 
@@ -52,7 +48,6 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 ## Future features
 
 ### User experience improvements
-- Notifications can be dismissed by clicking
 - More functionality to searching
   - Smarter filtering by pinyin: search "xingqi1" should return "xing1 qi1", etc.
   - Support for searching with style pīnyīn instead of PIN1YIN1

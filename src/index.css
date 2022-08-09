@@ -86,13 +86,13 @@ div {
 .rightAlign {
   float:right;
 }
-p.warning {
+.warning {
   color:firebrick;
   min-height: 20px;
   max-height: 20px;
   text-align: center;
 }
-p.notif {
+.notif {
   color:olivedrab;
   min-height: 20px;
   max-height: 20px;

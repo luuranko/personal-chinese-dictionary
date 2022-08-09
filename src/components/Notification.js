@@ -1,19 +1,16 @@
 const Notification = (props) => {
   const {notif, isWarning} = props
-  if (isWarning) {
-    return (
-      <div>
-        <p className='warning'>
-          {notif}
-        </p>
-      </div>
-    )
-  }
+  const className = isWarning? 'warning' : 'notif'
+  const visibility = notif === ''? 'hidden' : 'visible'
   return (
-    <div>
-      <p className='notif'>
+    <div
+      className={className}
+      id='notification'
+      style={{visibility: visibility, display: 'block'}}
+    >
+      <div>
         {notif}
-      </p>
+      </div>
     </div>
   )
 }
