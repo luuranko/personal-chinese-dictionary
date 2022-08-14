@@ -12,7 +12,7 @@ import {
 import {splitPinyinWithoutSpacesBySyllable} from "./services/PinyinSearch"
 import SearchResults from "./services/SearchResults";
 import AddWordForm from "./components/AddWordForm";
-import { getAllTags } from "./services/TagSearch";
+import { getAllTags, TagSearch } from "./services/TagSearch";
 
 const App = () => {
   const [words, setWords] = useState([])
@@ -299,6 +299,23 @@ const App = () => {
     setTagSearch(event.target.value)
   }
 
+  const changeNameOfTag = (prevTag, newTag) => {
+    const wordsToChange = TagSearch(words, prevTag)
+    wordsToChange.forEach(w => {
+      const index = w.tags.indexOf(w.tags.find(t => t === prevTag))
+      const newTagList = w.tags
+      newTagList.splice(index, 1, newTag)
+      const wordId = w.id
+      const updatedWord = {...w, tags: newTagList}
+      wordService
+        .update(wordId, updatedWord)
+        .then(returnedWord => {
+          setWords(words.map(word => word.id !== wordId ? word : returnedWord))
+        })
+    })
+    notify(`Changed tag ${prevTag} to ${newTag}`)
+  }
+
   const addwordformtitle = editingId > -1 ? 'Edit word' : 'Add a new word'
   return (
     <div>
@@ -363,6 +380,8 @@ const App = () => {
               handleSearchTypeChange={handleSearchTypeChange}
               tags={getAllTags(words)}
               handleTagSearchChange={handleTagSearchChange}
+              changeNameOfTag={changeNameOfTag}
+              warn={warn}
             />
           </td>
           </tr>

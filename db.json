@@ -42,7 +42,7 @@
         "explanation": "julkinen puisto"
       },
       "tags": [
-        "sijainti"
+        "paikka"
       ]
     },
     {
@@ -165,9 +165,9 @@
         "explanation": ""
       },
       "tags": [
+        "paikka",
         "koulutus",
-        "instituutio",
-        "sijainti"
+        "instituutio"
       ],
       "id": 10
     },
@@ -186,22 +186,6 @@
         "perhe"
       ],
       "id": 11
-    },
-    {
-      "hanzi": "姐姐",
-      "pinyin": [
-        "JIE3 JIE"
-      ],
-      "definition": {
-        "finnish": "isosisko, sisko",
-        "english": "big sister, elder sister, older sister, sister",
-        "explanation": ""
-      },
-      "tags": [
-        "henkilö",
-        "perhe"
-      ],
-      "id": 12
     },
     {
       "hanzi": "看起来",
@@ -248,22 +232,6 @@
         "perhe"
       ],
       "id": 15
-    },
-    {
-      "hanzi": "例如",
-      "pinyin": [
-        "LI2 RU2"
-      ],
-      "definition": {
-        "finnish": "esimerkki, esimerkiksi",
-        "english": "example, for example",
-        "explanation": ""
-      },
-      "tags": [
-        "adverbi",
-        "abstrakti"
-      ],
-      "id": 16
     },
     {
       "hanzi": "他",
@@ -313,21 +281,6 @@
       "id": 19
     },
     {
-      "hanzi": "雪",
-      "pinyin": [
-        "XUE3"
-      ],
-      "definition": {
-        "finnish": "lumi",
-        "english": "snow",
-        "explanation": ""
-      },
-      "tags": [
-        "luonto"
-      ],
-      "id": 20
-    },
-    {
       "hanzi": "一",
       "pinyin": [
         "YI1"
@@ -356,6 +309,21 @@
         "mittasana"
       ],
       "id": 22
+    },
+    {
+      "hanzi": "年",
+      "pinyin": [
+        "NIAN2"
+      ],
+      "definition": {
+        "finnish": "vuosi",
+        "english": "year",
+        "explanation": ""
+      },
+      "tags": [
+        "aika"
+      ],
+      "id": 23
     }
   ],
   "sounds": [

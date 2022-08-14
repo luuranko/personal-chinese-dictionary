@@ -18,6 +18,14 @@ button:hover {
   background-color:peru;
   color:snow;
 }
+.button {
+  text-align: center;
+  transition-duration: 0.2s;
+}
+.button:hover {
+  background-color:peru;
+  color:snow;
+}
 select {
   text-align: center;
   padding: 5px 10px;
@@ -59,9 +67,6 @@ th {
 .results_tr:nth-child(even) {
   background-color:oldlace;
 }
-.hidden {
-  visibility:hidden;
-}
 .scrollToTopBtn {
   display: none;
   position: fixed;
@@ -82,6 +87,7 @@ th {
 }
 div {
   display: inline-block;
+  padding-right: 20px;
 }
 .rightAlign {
   float:right;

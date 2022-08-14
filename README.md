@@ -6,7 +6,7 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 - add new words
 - modify previously added words
 - categorize words with tags
-- look up words by
+- filter words by
   - hanzi
   - pinyin
   - translation (Finnish or English) and explanation
@@ -14,6 +14,10 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 
 ## Latest changes
 
+- Implemented functionality to change a tag's name.
+  - User can change a tag by choosing it from the filter by tag dropdown menu and then pressing the edit button.
+  - User can write a new name for the tag in the text field that appears, and confirm the change with the confirm button. Invalid input is checked. This updates all words that contain the tag to match the new name.
+  - The delete button does not do anything yet.
 - Some code refactoring for notifications
 
 ## Current functionality
@@ -44,27 +48,35 @@ This app aims to provide a method of keeping track of the user's learned Mandari
 - User can filter words by meaning
   - search term is checked from both Finnish and English translations but not from explanation
 - User can view words in different orders (chronological, by pinyin or by hanzi)
+- User can change the name of a tag
+  - User can edit a tag by choosing it from the filter by tag dropdown menu and then pressing the edit button.
+  - User can write a new name for the tag in the text field that appears, and confirm the change with the confirm button.
 
 ## Future features
-
+While the basic functions are already done, the app requires many more improvements to be pleasant and convenient to use as intended. 
 ### User experience improvements
 - More functionality to searching
   - Smarter filtering by pinyin: search "xingqi1" should return "xing1 qi1", etc.
   - Support for searching with style pīnyīn instead of PIN1YIN1
   - User can filter pinyin with limited regular expressions
     - support for OR and wildcard symbols
+- Sorting options: order can be reversed on any setting
 - Import words from a text file
 - Visual improvements
   - Show pinyin in a style like pīnyīn instead of PIN1YIN1
   - Pinyin is shown below the character
+- User has personalized settings
+  - Finnish and English are not default, but instead will be dealt with as languages 1 and 2 the names of which the user will input
 - Mass modification options
-  - User can change the name of a tag without modifying each word containing it individually
+  - User can select words and add or remove a selected tag from them all at once.
+  - User can delete tags without changing them from each word individually
 - Implementing radicals
   - Words display radicals contained within characters of the word
   - User can filter words by radical
 - Implementing traditional characters
   - Words display their traditional variant, if available
   - Filtering by hanzi supports traditional characters
+- After adding a new word, if the tag choice dropdown menu was used to add tags to the word, its value should be reset
 
 ### Learning tools
 - Option to hide translations, explanations, pinyin and tags separately or altogether
